@@ -10,10 +10,11 @@ var path = require('path');
 var mongoose = require('mongoose');
 var jwt = require('jsonwebtoken');
 var cookieParser = require('cookie-parser');
- 
+var debug = require('debug')('newgulptest:server');
+
 require('dotenv').config();
 
-const MONGOURL = process.env.MONGODB_URI || 'mongodb://localhost/my-face';
+const MONGOURL = process.env.MONGODB_URI || 'mongodb://localhost/myApp';
 
 mongoose.connect(MONGOURL, err => {
 	console.log(err || `Connected to MongoDB at ${MONGOURL}`)

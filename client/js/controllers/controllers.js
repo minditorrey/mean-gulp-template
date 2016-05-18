@@ -1,10 +1,12 @@
 'use strict';
 
-var app = angular.module('myFaceApp');
+var app = angular.module('myApp');
 
 
 app.controller('homeController', function($scope) {
     console.log('homeCtrl!');
+
+
 
 });
 

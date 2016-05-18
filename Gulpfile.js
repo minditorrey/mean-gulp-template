@@ -18,12 +18,13 @@ var eslint = require('gulp-eslint');
 
 gulp.task('default', ['build', 'watch', 'serve']);
 
-gulp.task('build', ['js', 'css']);
+gulp.task('build', ['js', 'css', 'html']);
 
 gulp.task('watch', ['watch.js', 'watch.css']);
 
 gulp.task('serve', function() {
   nodemon({
+    script: 'app.js',
     ignore: ['client', 'public', 'Gulpfile.js']
   });
 });
@@ -67,6 +68,11 @@ gulp.task('watch.js', function() {
 gulp.task('css', ['clean.css'], function() {
   return gulp.src('./client/css/**/*.css')
     .pipe(gulp.dest('./public/css'));
+});
+
+gulp.task('html', function() {
+  return gulp.src('./client/templates/**/*.html')
+    .pipe(gulp.dest('./public/templates'));
 });
 
 gulp.task('watch.css', function() {

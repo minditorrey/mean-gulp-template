@@ -1,0 +1,23 @@
+{
+  "name": "mean-gulp-template",
+  "description": "",
+  "main": "Gulpfile.js",
+  "authors": [
+    "Mindi Torrey <minditorrey@me.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/minditorrey/mean-gulp-template",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.5",
+    "angular-ui-router": "^0.3.0",
+    "bootstrap": "^3.3.6"
+  }
+}
