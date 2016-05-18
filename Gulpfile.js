@@ -9,6 +9,8 @@ var babel = require('gulp-babel');
 var annotate = require('gulp-ng-annotate');
 var sourcemaps = require('gulp-sourcemaps');
 var eslint = require('gulp-eslint');
+var plumber = require('gulp-plumber');
+var sass = require('gulp-sass');
 
 // gulp.task  - define a task
 // gulp.src   - (source) input files
@@ -50,6 +52,7 @@ gulp.task('lint', function() {
 
 gulp.task('js', function() {
   return gulp.src('./client/js/**/*.js')
+    .pipe(plumber())
     .pipe(sourcemaps.init())
     .pipe(concat('bundle.js'))
     .pipe(babel({ presets: ['es2015'] }))
@@ -66,20 +69,22 @@ gulp.task('watch.js', function() {
 //////////// CSS //////////////
 
 gulp.task('css', ['clean.css'], function() {
-  return gulp.src('./client/css/**/*.css')
+  return gulp.src(['./client/scss/**/*.scss',
+                  './client/scss/**/*.sass'])
+    .pipe(sass().on('error', sass.logError))
     .pipe(gulp.dest('./public/css'));
 });
 
-gulp.task('html', function() {
-  return gulp.src('./client/templates/**/*.html')
-    .pipe(gulp.dest('./public/templates'));
-});
 
 gulp.task('watch.css', function() {
-  return gulp.watch('./client/css/**/*.css', ['css'])
+  return gulp.watch('./client/scss/**', ['css'])
 });
 
 gulp.task('clean.css', function() {
   return del('./public/css');
 });
 
+gulp.task('html', function() {
+  return gulp.src('./client/templates/**/*.html')
+    .pipe(gulp.dest('./public/templates'));
+});
